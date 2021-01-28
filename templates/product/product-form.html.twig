@@ -1,0 +1,21 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+
+    <p>Ajouter un produit</p>
+    {{form_start(form)}}
+    {{form_row(form.name, {'label': 'Nom du produit','attr':
+    {'placeholder':'Nom du produit...'}}) }}
+    {{form_row(form.description, {'label': 'Description','attr':
+    {'placeholder':'Description de votre produit...'}}) }}
+    {{form_row(form.display, {'label': 'Afficher dans votre fastfood'}) }}
+    {{form_row(form.priceHT, {'label': 'Prix Hors Taxes','attr':
+    {'placeholder':'Prix...'}}) }}
+    {{form_row(form.image, {'label': 'Photo de votre produit','attr':
+    {'placeholder':'Lien de votre image...'}}) }}
+    {{form_row(form.fastfood, {'label': 'Nom du fastfood','attr':
+    {'placeholder':'Nom du fastfood...'}}) }}
+    <button type="submit" class"btn btn-success">Ajouter</button>
+    {{form_end(form)}}
+
+{% endblock %}

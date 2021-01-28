@@ -1,0 +1,24 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+    
+    <p>Modifier un fastfood</p>
+
+    {{form_start(form)}}
+    {{form_row(form.name, {'label': 'Nom du fastfood','attr':
+    {'placeholder':'Nom du fastfood...'}}) }}
+    {{form_row(form.phone, {'label': 'Numéro de télépone de votre fastfood','attr':
+    {'placeholder':'Numéro de téléphone...'}}) }}
+    {{form_row(form.address, {'label': 'Adresse de votre fastfood'}) }}
+    {{form_row(form.city, {'label': 'Ville où se situe votre fastfood','attr':
+    {'placeholder':'Ville...'}}) }}
+    {{form_row(form.zip, {'label': 'Code postal de votre fastfood','attr':
+    {'placeholder':'Code postal...'}}) }}
+    {{form_row(form.content, {'label': 'Décrivez votre fastfood','attr':
+    {'placeholder':'Description du fastfood...'}}) }}
+    {{form_row(form.image, {'label': 'Logo de votre fastfood','attr':
+    {'placeholder':'Lien de votre logo...'}}) }}
+    <button type="submit" class"btn btn-success">Modifier</button>
+    {{form_end(form)}}
+
+{% endblock %}

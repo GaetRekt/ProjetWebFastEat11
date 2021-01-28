@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block head %}
+<link rel="icon" href="./docs/img/icon.png" />
+{% endblock %}
+
+{% block title %}Fast'Eat{% endblock %}
+
+{% block body %}
+<div class="block hero1 my-auto" style="background-image:url(https://img4.goodfon.com/original/1920x1080/0/32/meat-tomatoes-salat-fastfud-fast-food-sendvich-hamburger-pom.jpg);">
+  <br>
+  <div class="container-fluid text-center">
+    <h1 class="display-2 text-white" data-aos="fade-up" data-aos-duration="1000" data-aos-offset="0">Livraison à domicile</h1>
+    <p class="lead text-white" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="600">Retrouvez vos fast-food préféres chez vous !</p>
+<a href="{{ path('fastfoods_list') }}" class="btn-text lead d-inline-block text-white border-top border-bottom mt-4 pt-1 pb-1" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="1200">Voir tous les Fast-Food</a>
+  </div>
+
+  <div class="container" style="color:white;">
+    <h2 class="mb-5" >Fast-food recommandés</h2>
+    <div class="products-list-container">
+      {% for fastfood in fastfoods %}
+        {{ include('fastfood/fastfood_list_item.html.twig', { fastfood: fastfood }) }}
+      {% endfor %}
+    </div>
+  </div>
+  <br>
+</div>
+{% endblock %}

@@ -1,0 +1,15 @@
+<div
+  class="product-item-container d-lg-flex mb-3 pb-3 border-bottom border-secondary"
+>
+  <div class="product-img">
+    <a href="{{ path('fastfood_item', { id: fastfood.id }) }}">
+      <img src="{{ fastfood.image }}" width="200" alt="{{ fastfood.name }}" class="img-fluid" />
+    </a>
+  </div>
+  <div class="product-infos pl-lg-4">
+    <h3>{{ fastfood.name }}</h3>
+    <a href="{{ path('fastfood_item', { id: fastfood.id }) }}" class="btn btn-light"
+      >Choisir ce fast-food <img src="{{ asset('/icons/plus.svg') }}" alt="Choisir"
+    /></a>
+  </div>
+</div>

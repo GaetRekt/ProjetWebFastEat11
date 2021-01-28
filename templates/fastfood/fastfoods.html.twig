@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Tous les fast-food{% endblock %}
+
+{% block body %}
+<div class="container">
+  <h2 class="mb-5 mt-5">Tous les fast-food</h2>
+  <div class="products-list-container">
+    {% for fastfood in fastfoods %}
+      {{ include('fastfood/fastfood_list_item.html.twig', { fastfood: fastfood }) }}
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

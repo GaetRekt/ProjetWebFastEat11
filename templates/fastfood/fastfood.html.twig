@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ fastfood.name }}{% endblock %}
+
+{% block body %}
+  <div class="container pt-5">
+    <p>
+      <a href="{{ path('fastfoods_list') }}" class="btn btn-secondary">
+        Retour aux fast-food
+      </a>
+    </p>
+    <h1>{{ fastfood.name }}</h1>
+    <p>
+      <img src="{{ fastfood.image }}" alt="{{ fastfood.name }}" class="img-fluid" />
+    </p>
+    <div class="products-list-container">
+    <p>{{ product.name }}</p>
+    <p>Prix: {{ product.priceHT }} €</p>
+    <p>Description: {{ product.description}}</p>
+    <p><img src="{{ product.image }}" width="200" alt="{{ product.name }}" class="img-fluid" /></p>
+    <a href="{{ path ('cart_add', {'id':product.id}) }}" class="btn btn-success float-right">
+      <i class="fas fa-shopping-cart mr-1"></i>
+        Ajouter
+    </a>
+    </div>
+  </div>
+{% endblock %}

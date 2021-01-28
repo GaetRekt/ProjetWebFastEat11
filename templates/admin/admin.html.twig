@@ -1,0 +1,118 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Tableau de bord
+{% endblock %}
+
+{% block body %}
+    <div class="bg-light p-3">
+        <h1>Votre tableau de bord</h1>
+    </div>
+
+<p><a href="{{ path('add_product') }}">Ajouter un produit</a></p>
+<p><a href="{{ path('add_fastfood') }}">Ajouter un fastfood</a></p>
+
+    {% for user in users %}
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nom d'utilisateur</th>
+                    <th>Prénom</th>
+                    <th>Nom</th>
+                    <th>Email</th>
+                    <th>Role(s)</th>
+                    <th>Numéro de téléphone</th>
+                    <th>Adresse</th>
+                    <th>Code postal</th>
+                    <th>Ville</th>
+                    <th>Argent</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{user.id}}</td>
+                    <td>{{user.username}}</td>
+                    <td>{{user.firstname}}</td>
+                    <td>{{user.lastname}}</td>
+                    <td>{{user.email}}</td>
+                    <td>
+                        {% for role in user.roles %}
+                            {% if role == "ROLE_USER" %}
+                                Utilisateur
+                            {% elseif role == "ROLE_RESTO" %}
+                                Restaurateur
+                            {% elseif role == "ROLE_ADMIN" %}
+                                Administrateur
+                            {% endif %}
+                        {% endfor %}
+                    </td>
+                    <td>{{user.phone}}</td>
+                    <td>{{user.address}}</td>
+                    <td>{{user.zip}}</td>
+                    <td>{{user.city}}</td>
+                    <td>{{user.wallet}} €</td>
+                </tr>
+            </tbody>
+        </table>
+    {% endfor %}
+
+    {% for fastfood in fastfoods %}
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nom</th>
+                    <th>Restaurateur</th>
+                    <th>Image</th>
+                    <th>Adresse</th>
+                    <th>Code postal</th>
+                    <th>Ville</th>
+                    <th>Numéro de téléphone</th>
+                    <th>Contenu</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{fastfood.id}}</td>
+                    <td>{{fastfood.name}}</td>
+                    <td>{{fastfood.user.firstname}} {{fastfood.user.lastname}}</td>
+                    <td><img src="{{ fastfood.image }}" alt="{{ fastfood.name }}" width="200" class="img-fluid" /></td>
+                    <td>{{fastfood.address}}</td>
+                    <td>{{fastfood.zip}}</td>
+                    <td>{{fastfood.city}}</td>
+                    <td>{{fastfood.phone}}</td>
+                    <td>{{fastfood.content}}</td>
+                </tr>
+                <td><a href="{{ path('modify_fastfood', {'id': fastfood.id}) }}">Modifier ce fastfood</a></td>
+                <td><a href="{{ path('delete_fastfood', {'id': fastfood.id}) }}">Supprimer ce fastfood</a></td>
+            </tbody>
+        </table>
+    {% endfor %}
+
+    {% for product in products %}
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nom</th>
+                    <th>Fastfood</th>
+                    <th>Image</th>
+                    <th>Description</th>
+                    <th>Prix HT</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{product.id}}</td>
+                    <td>{{product.name}}</td>
+                    <td>{{product.fastfood}}</td>
+                    <td><img src="{{ product.image }}" alt="{{ product.name }}" width="200" class="img-fluid" /></td>
+                    <td>{{product.description}}</td>
+                    <td>{{product.priceHT}} €</td>
+                </tr>
+                <td><a href="{{ path('modify_product', {'id': product.id}) }}">Modifier ce produit</a></td>
+                <td><a href="{{ path('delete_product', {'id': product.id}) }}">Supprimer ce produit</a></td>
+            </tbody>
+        </table>
+    {% endfor %}
+{% endblock %}

@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Votre panier
+{% endblock %}
+
+{% block body %}
+    <div class="bg-light p-3">
+        <h1>Votre panier</h1>
+    </div>
+
+    {% if items | length > 0 %}
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Produit</th>
+                    <th>Prix</th>
+                    <th>Quantité</th>
+                    <th>Total</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in items %}
+                    <tr>
+                    <td>{{item.product.name}}</td>
+                    <td>{{item.product.priceHT}} €</td>
+                    <td>{{item.quantity}}</td>
+                    <td>{{item.product.priceHT * item.quantity}} €</td>
+                    <td>
+                        <a href="{{path('cart_remove', {'id': item.product.id}) }}" class="btn btn-danger btn-sm">
+                            <i class="bi bi-trash"></i>
+                        </a>
+                    </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+            <tfoot>
+                <tr> 
+                    <td colspan="3" class="text-right">Taxes : </td>
+                    <td> 2,50€ </td>
+                </tr>
+                <tr>
+                    <td colspan="3" class="text-right">Total avec taxes : </td>
+                    <td>{{ total + 2.5 }} €</td>
+                    <td>
+                    <a href="#" class="btn btn-success btn-sm">Commander</a>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+    {% else %}
+        <p> Votre panier est vide ! </p>
+    {% endif %}
+{% endblock %}
